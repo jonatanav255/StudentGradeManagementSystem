@@ -85,10 +85,23 @@ public class Student {
     // Objective: Implement a method that updates the grade for an existing course.
     public Optional<Double> updateGrade(String course) {
         if (grades.containsKey(course)) {
+            System.out.println("The grade was updated.");
             return Optional.ofNullable(grades.get(course));
         } else {
             System.out.println("The course was not found.");
             return Optional.empty();
         }
     }
+
+    // Remove a Grade for a Course
+    // Objective: Implement a method to remove a course and its grade from the grades map.
+    public String removeGrade(String course) {
+        if (grades.containsKey(course)) {
+            grades.remove(course);
+            return "The grade for course '" + course + "' was successfully removed.";
+        } else {
+            return "The course '" + course + "' was not found.";
+        }
+    }
+
 }

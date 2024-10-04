@@ -1,10 +1,7 @@
 package com.example;
 
 import java.util.HashMap;
-
 import java.util.Map;
-
-import java.util.Optional;
 
 public class Student {
 
@@ -36,65 +33,54 @@ public class Student {
         this.name = name;
     }
 
+    // Add grade for a specific course
     public String addGrade(String course, Double grade) {
+        if (grade < 0 || grade > 100) {
+            return "Invalid grade. It should be between 0 and 100.";
+        }
         grades.put(course, grade);
-        return "Grade for course '" + course + "' has been successfully added";
+        return "Grade for course '" + course + "' has been successfully added.";
     }
 
+    // Retrieve all grades
     public Map<String, Double> getAllGrades() {
         return grades;
-
     }
 
     // Calculate the Average Grade
-    // Objective: Implement a method to calculate and return the student's average grade across all courses.
-    public Double calculateStudentAverage() {
-
-        if (grades == null || grades.isEmpty()) {
-            System.out.println("Student has no grades");
-            return null;
+    public String calculateStudentAverage() {
+        if (grades.isEmpty()) {
+            return "Student has no grades to calculate the average.";
         }
 
         double totalGrades = 0.0;
-        int numberOfGrades = grades.size();
-
-        for (Map.Entry<String, Double> entry : grades.entrySet()) {
-            // String key = entry.getKey();
-            Double grade = entry.getValue();
-
+        for (Double grade : grades.values()) {
             totalGrades += grade;
         }
 
-        Double averageGrade = totalGrades / numberOfGrades;
-
-        return averageGrade;
-
+        Double averageGrade = totalGrades / grades.size();
+        return "The average grade across " + grades.size() + " courses is: " + averageGrade;
     }
-    //  Retrieve a Grade for a Specific Course
-    // Objective: Implement a method that retrieves and returns the grade for a specific course.
 
-    public Double returnSpecificGrade(String course) {
+    // Retrieve a Grade for a Specific Course
+    public String returnSpecificGrade(String course) {
         if (!grades.containsKey(course)) {
-            System.out.println("Course not found: " + course);
-            return null;
+            return "Course '" + course + "' not found.";
         }
-        return grades.get(course);
+        return "The grade for '" + course + "' is: " + grades.get(course);
     }
 
     // Update an Existing Grade
-    // Objective: Implement a method that updates the grade for an existing course.
-    public Optional<Double> updateGrade(String course) {
+    public String updateGrade(String course, Double newGrade) {
         if (grades.containsKey(course)) {
-            System.out.println("The grade was updated.");
-            return Optional.ofNullable(grades.get(course));
+            grades.put(course, newGrade); // Update the grade with the new value
+            return "The grade for course '" + course + "' has been updated to " + newGrade;
         } else {
-            System.out.println("The course was not found.");
-            return Optional.empty();
+            return "Course '" + course + "' not found.";
         }
     }
 
     // Remove a Grade for a Course
-    // Objective: Implement a method to remove a course and its grade from the grades map.
     public String removeGrade(String course) {
         if (grades.containsKey(course)) {
             grades.remove(course);

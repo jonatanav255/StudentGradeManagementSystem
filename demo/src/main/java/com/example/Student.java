@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import java.util.Map;
 
+import java.util.Optional;
+
 public class Student {
 
     private String studentId;
@@ -77,5 +79,16 @@ public class Student {
             return null;
         }
         return grades.get(course);
+    }
+
+    // Update an Existing Grade
+    // Objective: Implement a method that updates the grade for an existing course.
+    public Optional<Double> updateGrade(String course) {
+        if (grades.containsKey(course)) {
+            return Optional.ofNullable(grades.get(course));
+        } else {
+            System.out.println("The course was not found.");
+            return Optional.empty();
+        }
     }
 }

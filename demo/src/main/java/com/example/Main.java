@@ -11,7 +11,8 @@ public class Main {
         student.addGrade("English", 88.5);
         student.addGrade("History", 76.0);
 
-        Double studentAverage = student.calculateStudentAverage();
-        System.out.println(studentAverage);
+        // Double studentAverage = student.calculateStudentAverage();
+        Double studentSpecificGrade = student.returnSpecificGrade("Mathasdas");
+        System.out.println(studentSpecificGrade);
     }
 }

@@ -68,4 +68,14 @@ public class Student {
         return averageGrade;
 
     }
+    //  Retrieve a Grade for a Specific Course
+    // Objective: Implement a method that retrieves and returns the grade for a specific course.
+
+    public Double returnSpecificGrade(String course) {
+        if (!grades.containsKey(course)) {
+            System.out.println("Course not found: " + course);
+            return null;
+        }
+        return grades.get(course);
+    }
 }

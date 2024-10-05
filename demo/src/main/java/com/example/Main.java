@@ -1,27 +1,17 @@
 package com.example;
 
+
 public class Main {
     public static void main(String[] args) {
-        // Create a new student
-        Student student = new Student("123", "John Doe");
+        // Initialize StudentManager
+        StudentManager manager = new StudentManager();
 
-        // Add grades
-        System.out.println(student.addGrade("Math", 95.0));
-        System.out.println(student.addGrade("Science", 85.5));
+        // Add students to the manager
+        manager.addStudent("S001", new Student("1", "Alice"));
+        manager.addStudent("S002", new Student("2", "Bob"));
 
-        // Get all grades
-        System.out.println(student.getAllGrades());
-
-        // Calculate average
-        System.out.println(student.calculateStudentAverage());
-
-        // Get specific grade
-        System.out.println(student.returnSpecificGrade("Math"));
-
-        // Update a grade
-        System.out.println(student.updateGrade("Science", 90.0));
-
-        // Remove a grade
-        System.out.println(student.removeGrade("Math"));
+        // Retrieve a student and list all students
+        System.out.println(manager.getStudent("S001").getName()); // Output: Alice
+        System.out.println(manager.listAllStudents());
     }
 }
